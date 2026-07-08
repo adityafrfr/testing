@@ -1,15 +1,17 @@
 package arrayAndSlices
 
-func Sum(numbers []int) int {
+func Sum(numbersToSum []int) int {
 	sum := 0
-	for _, n := range numbers {
+	for _, n := range numbersToSum {
 		sum += n
 	}
 	return sum
 }
 func SumAll(numbersToSum ...[]int) []int {
-	lengthOfNumbers := len(numbersToSum)
-	sums := make([]int, lengthOfNumbers)
+	// lengthOfNumbers := len(numbersToSum)
+	// sums := make([]int, lengthOfNumbers)
+
+	var sums []int
 
 	for _, numbers := range numbersToSum {
 		sums = append(sums, Sum(numbers))
@@ -18,6 +20,19 @@ func SumAll(numbersToSum ...[]int) []int {
 	return sums
 }
 
-func SumAllTails(numbers ...[]int) []int	{
-	return nil
+func SumAllTails(numbersToSum ...[]int) []int	{
+	var sums []int
+
+	for _, numbers := range numbersToSum	{
+		if len(numbers) == 0	{
+			sums = append(sums, 0)
+			
+		} else	{
+	tail := numbers[1:]
+	sums = append(sums, Sum(tail))
+
+		}
+	}
+
+	return sums
 }
