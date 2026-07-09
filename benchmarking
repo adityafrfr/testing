@@ -1,3 +1,12 @@
 go test -bench=. -benchmem
 
 The -benchmem flag reports information about memory allocations:
+
+go test -coverprofile=coverage.out ./...
+
+
+ok      learn/pointers  0.001s  coverage: 100.0% of statements
+
+go tool cover -html=coverage.out
+
+tamatar@sabzi:~/Storage/go with tests/pointers$ 
