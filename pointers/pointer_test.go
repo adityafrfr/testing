@@ -58,3 +58,14 @@ func TestWallet(t *testing.T) {
 		assertError(t, err, ErrInsufficientFunds)
 	})
 }
+
+func TestStringer(t *testing.T)	{
+	t.Run("check stringer", func(t *testing.T) {
+		got := Bitcoin(10).String()
+		want := "10 BTC"
+
+		if got != want	{	
+			t.Errorf("got %v want %v", got, want)
+		}
+	})
+}
