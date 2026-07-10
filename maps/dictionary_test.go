@@ -27,11 +27,23 @@ func TestAdd(t *testing.T) {
 	t.Run("add test", func(t *testing.T) {
 		dictionary := Dictionary{}
 		
-		const word = "test"
-		const definition = "this is just a test"
-		dictionary.Add(word, definition)
-
+		word := "test"
+		definition := "this is just a test"
+		err := dictionary.Add(word, definition)
+		if err != nil	{
+			t.Fatal("add test is broken")
+		}
 		
+		assertDefinition(t, dictionary, word, definition)
+	})
+
+	t.Run("existing word", func(t *testing.T) {
+		word := "test"
+		definition := "this is just a test"
+		dictionary := Dictionary{word: definition}
+		err := dictionary.Add(word, "new test")
+
+		assertError(t, err, ErrWordExists)
 		assertDefinition(t, dictionary, word, definition)
 	})
 }
